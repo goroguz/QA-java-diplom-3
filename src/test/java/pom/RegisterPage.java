@@ -2,6 +2,10 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class RegisterPage {
     private final WebDriver driver;
@@ -46,5 +50,10 @@ public class RegisterPage {
 
     public void goToLogin() {
         driver.findElement(loginLink).click();
+    }
+
+    public void waitForLoginRedirect() {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+            .until(ExpectedConditions.urlContains("/login"));
     }
 }

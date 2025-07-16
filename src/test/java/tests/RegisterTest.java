@@ -3,11 +3,7 @@ package tests;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pom.RegisterPage;
-
-import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,8 +22,7 @@ public class RegisterTest extends BaseTest {
         String password = faker.internet().password(8, 16, true, true);
 
         registerPage.register(name, email, password);
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-            .until(ExpectedConditions.urlContains("/login"));
+        registerPage.waitForLoginRedirect();
         assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
