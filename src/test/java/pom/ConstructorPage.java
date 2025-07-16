@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 public class ConstructorPage {
     private final WebDriver driver;
 
-    private final By bunTab = By.xpath("//span[text()='Булки']");
     private final By sauceTab = By.xpath("//span[text()='Соусы']");
     private final By fillingTab = By.xpath("//span[text()='Начинки']");
 
@@ -17,10 +16,6 @@ public class ConstructorPage {
 
     public ConstructorPage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public void clickBunsTab() {
-        driver.findElement(bunTab).click();
     }
 
     public void clickSaucesTab() {

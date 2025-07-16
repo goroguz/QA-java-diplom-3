@@ -15,6 +15,8 @@ import pom.MainPage;
 import pom.RegisterPage;
 import service.UserService;
 
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
@@ -26,7 +28,7 @@ public class LoginTest extends BaseTest {
     private static String password;
 
     private void waitUntilMainPageLoaded() {
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, Duration.ofSeconds(5))
             .until(ExpectedConditions.urlToBe(URL));
     }
 

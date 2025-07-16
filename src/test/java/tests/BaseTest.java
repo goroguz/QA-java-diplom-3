@@ -1,5 +1,6 @@
 package tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BaseTest {
 
-    public static final String CHROMEDRIVER_PATH = "/Users/A13039316/Downloads/chromedriver-mac-arm64/chromedriver";
     public static final String YANDEX_BINARY_PATH = "/Applications/Yandex.app/Contents/MacOS/Yandex";
     public static final String YANDEXDRIVER_PATH = "/Users/you/Downloads/yandexdriver";
     public static final String URL = "https://stellarburgers.nomoreparties.site/";
@@ -19,7 +19,7 @@ public class BaseTest {
         String browser = System.getProperty("browser", "chrome");
 
         if ("chrome".equalsIgnoreCase(browser)) {
-            System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH);
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if ("yandex".equalsIgnoreCase(browser)) {
             System.setProperty("webdriver.chrome.driver", YANDEXDRIVER_PATH);
