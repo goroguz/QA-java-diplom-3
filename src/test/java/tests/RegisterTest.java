@@ -2,14 +2,19 @@ package tests;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
+import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Test;
 import pom.RegisterPage;
+import service.UserService;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RegisterTest extends BaseTest {
     private final Faker faker = new Faker();
+    private String accessToken;
+    private final static UserService userService = new UserService();
 
     @Test
     @Description("Успешная регистрация нового пользователя")
@@ -23,6 +28,10 @@ public class RegisterTest extends BaseTest {
 
         registerPage.register(name, email, password);
         registerPage.waitForLoginRedirect();
+
+        Response registerResponse = userService.loginUser(email, password, name);
+        accessToken = registerResponse.then().extract().path("accessToken");
+
         assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
@@ -36,5 +45,14 @@ public class RegisterTest extends BaseTest {
 
         String errorMessage = registerPage.getErrorText();
         assertEquals("Некорректный пароль", errorMessage);
+    }
+
+    @After
+    public  void deleteUser() {
+        if (accessToken != null) {
+            userService.deleteUser(accessToken)
+                .then()
+                .statusCode(202);
+        }
     }
 }
