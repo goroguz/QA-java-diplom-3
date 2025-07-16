@@ -20,7 +20,7 @@ public class ConstructorTest extends BaseTest {
     public void testSaucesTabOpensSaucesSection() {
         ConstructorPage constructorPage = new ConstructorPage(driver);
         constructorPage.clickSaucesTab();
-        assertTrue(constructorPage.isSaucesSectionVisible());
+        assertTrue(constructorPage.isSaucesTabActive());
     }
 
     @Test
@@ -28,6 +28,6 @@ public class ConstructorTest extends BaseTest {
     public void testFillingsTabOpensFillingsSection() {
         ConstructorPage constructorPage = new ConstructorPage(driver);
         constructorPage.clickFillingsTab();
-        assertTrue(constructorPage.isFillingsSectionVisible());
+        assertTrue(constructorPage.isFillingsTabActive());
     }
 }
