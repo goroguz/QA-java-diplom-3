@@ -1,5 +1,6 @@
 package pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,10 +22,12 @@ public class ConstructorPage {
         this.driver = driver;
     }
 
+    @Step("Проверка, что вкладка 'Булки' активна по умолчанию")
     public void clickSaucesTab() {
         driver.findElement(sauceTab).click();
     }
 
+    @Step("Проверка, что вкладка 'Начинки' активна по умолчанию")
     public void clickFillingsTab() {
         WebElement tab = driver.findElement(fillingTab);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tab);
@@ -40,16 +43,19 @@ public class ConstructorPage {
     }
 
 
+    @Step("Проверка, что вкладка 'Булки' активна по умолчанию")
     public boolean isBunsTabActive() {
         String text = driver.findElement(activeTab).getText();
         return "Булки".equals(text);
     }
 
+    @Step("Проверка, что вкладка 'Соусы' активна")
     public boolean isSaucesTabActive() {
         String tabText = driver.findElement(activeTab).getText();
         return "Соусы".equals(tabText);
     }
 
+    @Step("Проверка, что вкладка 'Начинки' активна")
     public boolean isFillingsTabActive() {
         String text = driver.findElement(activeTab).getText();
         return "Начинки".equals(text);

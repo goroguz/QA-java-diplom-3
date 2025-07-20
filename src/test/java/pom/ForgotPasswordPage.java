@@ -1,5 +1,6 @@
 package pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,6 +12,7 @@ public class ForgotPasswordPage {
         this.driver = driver;
     }
 
+    @Step("Переход к форме восстановления пароля")
     public void goToLoginFromRestoreForm() {
         driver.findElement(loginLink).click();
     }
